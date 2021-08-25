@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <textarea id="text-area" cols="100" rows="10" oninput="myFunc()" ></textarea>
+  <h1 style="color: red;">Output is Given Below</h1>
+  <div id = "myOutput"></div>
+  <script>
+    function HtmlEncode(s)
+    {
+      var element = document.createElement("div");
+      element.innerText = element.textContent = s;
+      s = element.innerHTML;
+      return s;
+    } 
+    function myFunc(){
+        let content = document.getElementById('text-area').value;
+        let output = "";
+        for(let single of content)
+        {
+          let character = '';
+          if(single==' '){
+            character = '&nbsp;';
+          }
+          else{
+            character = HtmlEncode(single);
+          }
+          output+=`<span>${character}</span>`;
+        }
+      document.getElementById('myOutput').innerHTML = output;
+    }
+  </script>
+</body>
+</html>
